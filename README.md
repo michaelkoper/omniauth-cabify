@@ -1,7 +1,7 @@
 # OmniAuth Cabify
 
 This is the official OmniAuth strategy for authenticating to Cabify. To
-use it, you'll need to be an admin of Cabify :-)
+use it, you'll need to be a Cabify admin :-)
 
 ## Basic Usage
 
