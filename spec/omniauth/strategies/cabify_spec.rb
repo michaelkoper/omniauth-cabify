@@ -10,8 +10,8 @@ RSpec.describe OmniAuth::Strategies::Cabify do
   before { allow(strategy).to receive(:access_token) { access_token } }
 
   describe '#client' do
-    it 'returns localhost for the site' do
-      expect(strategy.client.site).to eq('http://localhost:3000')
+    it 'returns the root url for the site' do
+      expect(strategy.client.site).to eq('https://cabify.com')
     end
 
     it 'returns a authorize url' do
@@ -24,13 +24,13 @@ RSpec.describe OmniAuth::Strategies::Cabify do
   end
 
   describe '#raw_info' do
-    before { expect(access_token).to receive(:get).with('oauth/users') { response } }
-
     it 'requests the oauth user path' do
+      expect(access_token).to receive(:get).with('api/v2/user') { response }
       strategy.raw_info
     end
 
     it 'returns the pased response' do
+      allow(access_token).to receive(:get).with('api/v2/user') { response }
       expect(strategy.raw_info).to eq(parsed_response)
     end
   end
