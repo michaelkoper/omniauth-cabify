@@ -1,39 +1,37 @@
 require 'spec_helper'
 
-describe OmniAuth::Strategies::Cabify do
-  let(:access_token) { stub('AccessToken', :options => {}) }
-  let(:parsed_response) { stub('ParsedResponse') }
-  let(:response) { stub('Response', :parsed => parsed_response) }
+RSpec.describe OmniAuth::Strategies::Cabify do
+  let(:parsed_response) { double('ParsedResponse') }
+  let(:response) { double('Response', parsed: parsed_response) }
+  let(:access_token) { double('AccessToken', options: {}, get: response) }
 
-  subject do
-    OmniAuth::Strategies::Cabify.new({})
-  end
+  subject(:strategy) { OmniAuth::Strategies::Cabify.new(nil) }
 
-  before(:each) do
-    subject.stub!(:access_token).and_return(access_token)
-  end
+  before { allow(strategy).to receive(:access_token) { access_token } }
 
-  context "client options" do
-
-    it 'should have correct site' do
-      subject.options.client_options.site.should eq("http://localhost:3000")
+  describe '#client' do
+    it 'returns localhost for the site' do
+      expect(strategy.client.site).to eq('http://localhost:3000')
     end
 
-    it 'should have correct authorize url' do
-      subject.options.client_options.authorize_url.should eq('http://localhost:3000/oauth/new')
+    it 'returns a authorize url' do
+      expect(strategy.client.options).to include(authorize_url: '/auth/authorizations/new')
     end
 
-    it 'should have correct token url' do
-      subject.options.client_options.token_url.should eq('http://localhost:3000/oauth/token')
-    end
-
-  end
-
-  context "#raw_info" do
-    it "should use relative paths" do
-      access_token.should_receive(:get).with('oauth/users').and_return(response)
-      subject.raw_info.should eq(parsed_response)
+    it 'returns a token url' do
+      expect(strategy.client.options).to include(token_url: '/auth/api/authorization')
     end
   end
 
+  describe '#raw_info' do
+    before { expect(access_token).to receive(:get).with('oauth/users') { response } }
+
+    it 'requests the oauth user path' do
+      strategy.raw_info
+    end
+
+    it 'returns the pased response' do
+      expect(strategy.raw_info).to eq(parsed_response)
+    end
+  end
 end
