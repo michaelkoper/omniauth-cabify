@@ -1,4 +1,4 @@
-# OmniAuth Cabify
+# OmniAuth Cabify [![Build Status](https://travis-ci.org/minifast/omniauth-cabify.svg?branch=master)](https://travis-ci.org/minifast/omniauth-cabify) [![Code Climate](https://codeclimate.com/github/minifast/omniauth-cabify/badges/gpa.svg)](https://codeclimate.com/github/minifast/omniauth-cabify)
 
 This is the official OmniAuth strategy for authenticating to Cabify. To
 use it, you'll need to be a Cabify admin :-)
