@@ -3,14 +3,31 @@
 This is the official OmniAuth strategy for authenticating to Cabify. To
 use it, you'll need to be a Cabify admin :-)
 
-## Basic Usage
+## Installation
 
-    use OmniAuth::Builder do
-      provider :cabify, ENV['CABIFY_KEY'], ENV['CABIFY_SECRET']
-    end
+Add this line to your application's Gemfile:
 
+```ruby
+gem 'omniauth-cabify'
+```
 
+And then execute:
 
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install omniauth-cabify
+
+## Usage
+
+Add the following to your `config/initializers/omniauth.rb` or similar:
+
+```
+  use OmniAuth::Builder do
+    provider :cabify, ENV['CABIFY_APP_ID'], ENV['CABIFY_APP_SECRET']
+  end
+```
 
 ## License
 
