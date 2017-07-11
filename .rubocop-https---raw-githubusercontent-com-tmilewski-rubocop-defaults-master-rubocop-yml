@@ -48,7 +48,7 @@ Metrics/ClassLength:
   CountComments: false
   Max: 100
 
-Layout/MultilineMethodCallIndentation:
+Style/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
 Style/FrozenStringLiteralComment:

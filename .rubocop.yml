@@ -23,3 +23,6 @@ Metrics/BlockLength:
 
 Style/FormatString:
   Enabled: false
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
