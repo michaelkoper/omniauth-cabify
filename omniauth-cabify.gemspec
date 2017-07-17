@@ -25,8 +25,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'omniauth-oauth2', '~> 1'
 
   gem.add_development_dependency 'bundler', '~> 1.15'
-  gem.add_development_dependency 'rack-test'
+  gem.add_development_dependency 'rack-test', '~> 0.7'
   gem.add_development_dependency 'rake', '~> 10.0'
   gem.add_development_dependency 'rspec', '~> 3.0'
-  gem.add_development_dependency 'webmock'
+  gem.add_development_dependency 'webmock', '~> 3.0'
 end
